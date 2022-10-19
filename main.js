@@ -1,7 +1,7 @@
 var taskInput = document.getElementById("new-task");
 var addButton = document.getElementsByTagName("button")[0];
-var incompleteTasksHolder = document.getElementById("imcomplete-tasks");
-var completedTaskHolder = document.getElementById("completed-tasks");
+var incompleteTasksHolder = document.getElementById("incomplete-tasks");
+var completedTasksHolder = document.getElementById("completed-tasks");
 
 
 //New Task List Item
@@ -9,7 +9,7 @@ var createNewTaskElement = function(taskString){
     //Create List Item  
     var listItem = document.createElement("li");
 
-    //input (Checkbox)
+    //input (Checkbox)      
     var checkBox = document.createElement("input"); // checkbox
     //label
     var label = document.createElement("label");
@@ -99,7 +99,7 @@ var taskCompleted = function(){
     console.log("Task complete...");
     //Append the task list item to the #completed-tasks
     var listItem = this.parentNode;
-    completedTaskHolder.appendChild(listItem);
+    completedTasksHolder.appendChild(listItem);
     bindTaskEvents(listItem, taskIncomplete);
 }
 
@@ -127,27 +127,28 @@ var bindTaskEvents = function(taskListItem, checkBoxEventHandler) {
 
     //bind checkBoxEventHandler to checkbox
     checkBox.onchange = checkBoxEventHandler;
-
+}
     // var ajaxRequest = function() {
     //    console.log("AJAX request");
     // }
 
 
     //Set the click handler to the addTask function
-    addButton.addEventListener("click", addTask)
+    addButton.addEventListener("click", addTask);
 
     //cycle over incompleteTaskHolder ul list items
-    for (let i = 0; i <incompleteTasksHolder.children.length; i++) {
+    for (var i = 0; i <incompleteTasksHolder.children.length; i++) {
         //bind events to list item's children (taskCompleted)
         bindTaskEvents(incompleteTasksHolder.children[i], taskCompleted);
     }
 
 
     //cycle over completedTaskHolder ul list items
-    for (let i = 0; i < completedTaskHolder.children.length; i++) {
+    for (var i = 0; i < completedTasksHolder.children.length; i++) {
         //bind events to list item's children (taskIncomplete)
         bindTaskEvents(completedTasksHolder.children[i], taskIncomplete);
     }
 
 
-}
+
+
